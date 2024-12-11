@@ -70,4 +70,18 @@ function showProducts ( products) {
 
 showProducts (productsList);
 
+// getting the category section so we can start the logic for user filtering 
+const categoryButtons = document.querySelectorAll(".filtering-section__catagory");
+
+categoryButtons.forEach( button => {
+        button.addEventListener( "click", () => {
+            const category = button.id;
+            const filteredProducts = productsList.filter( product => product.category === category);
+            showProducts(filteredProducts)
+        });
+});
+
+
+
+
 
