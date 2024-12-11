@@ -1,0 +1,98 @@
+/* General Header Styles */
+header {
+    position: absolute; /* Anchors the header at the top */
+    width: 100%; /* Ensures it spans the full width */
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: var(--padding-medium);
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-bottom: 2px solid var(--secondary-color); /* Adds a bottom border */
+    flex-grow: 1;
+}
+
+/* Header Navigation */
+.header-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--margin-medium);
+}
+
+.header-navigation__links {
+    display: flex;
+    gap: var(--margin-large);
+    list-style: none;
+}
+
+.header-navigation__link a {
+    display: block;
+    padding: var(--padding-small) var(--padding-medium);
+    color: var(--text-color);
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    background-color: var(--tertiary-color);
+    border-radius: var(--border-radius-base);
+    box-shadow: 2px 2px 4px var(--text-color); /* Uses variables for shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header-navigation__link a:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    text-align: center;
+    color: var(--text-color);
+    box-shadow: 4px 4px 8px var(--text-color); /* Slightly deeper shadow */
+}
+/* Footer Styles */
+footer {
+    flex-grow: 1;
+    position: relative; /* Anchors the footer */
+    width: 100%; /* Ensures it spans the full width */
+    padding: var(--padding-large);
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-align: center;
+    border-top: 2px solid var(--secondary-color);
+    box-shadow: 0px -2px 4px var(--text-color); /* Subtle shadow at the top */
+}
+
+.footer-description {
+    margin-bottom: var(--margin-medium);
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-bold);
+}
+
+/* Social Links Styles */
+.link-to-sosials {
+    display: flex;
+    justify-content: center;
+    gap: var(--margin-medium); /* Creates spacing between the links */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    list-style: none; /* Remove bullet points */
+}
+
+.link-to-sosials li {
+    text-align: center; /* Centers the text inside the link box */
+}
+
+.link-to-sosials li a {
+    display: inline-block;
+    padding: var(--padding-small) var(--padding-medium);
+    color: var(--text-color);
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-bold);
+    background-color: var(--tertiary-color);
+    cursor: pointer;
+    text-decoration: none; 
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+

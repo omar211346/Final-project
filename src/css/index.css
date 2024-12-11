@@ -1,0 +1,79 @@
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Ensure content starts from the top */
+    padding: var(--padding-large);
+    margin-top: var(--margin-large); /* Add space below the header */
+}
+
+/* Homepage Title */
+.homepage-model-section__title {
+    font-size: var(--font-size-large);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: var(--margin-medium);
+    margin-top: var(--margin-medium); /* Extra space to ensure it clears the header */
+}
+
+/* Homepage Description */
+.homepage-model-section__description {
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-normal);
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: var(--margin-large);
+}
+
+/* Image Container Styling */
+.homepage-model-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--margin-large);
+}
+
+.homepage-model-section__male,
+.homepage-model-section__female {
+    text-align: center;
+    padding: var(--padding-small);
+    border-radius: var(--border-radius-base);
+    box-shadow: 0px 4px 6px var(--text-color); /* Box shadow for image containers */
+    background-color: var(--primary-color);
+    width: 400px; /* Fixed width */
+    height: 650px; /* Fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Image Styling */
+.homepage-model-section__male__image,
+.homepage-model-section__female__image {
+    width: 100%; /* Stretch image to container's width */
+    height: 500px; /* Fixed height for consistent layout */
+    object-fit: cover; /* Ensures the image fits nicely */
+    border-radius: var(--border-radius-base);
+}
+
+/* Button Styling */
+.homepage-model-section__male__button,
+.homepage-model-section__female__button {
+    margin-top: var(--margin-medium);
+    padding: var(--padding-small) var(--padding-medium);
+    font-size: var(--font-size-small);
+    background-color: var(--tertiary-color);
+    color: var(--text-color);
+    border: 2px solid var(--text-color);
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.homepage-model-section__male__button:hover,
+.homepage-model-section__female__button:hover {
+    background-color: var(--secondary-color);
+}

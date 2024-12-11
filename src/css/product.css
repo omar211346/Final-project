@@ -1,0 +1,91 @@
+
+.main{
+    padding-top: var(--padding-large); /* Adjust according to the header height */
+    width: 100%;
+}
+
+/* Filter Section */
+.filtering-section {
+    margin-top: var(--margin-xl);
+    background-color: var(--secondary-color);
+    padding: var(--padding-medium);
+    text-align: center;
+    margin-bottom: var(--margin-large);
+}
+
+
+.filtering-section__catagories {
+    display: flex;
+    justify-content: center;
+    gap: var(--margin-small);
+    margin-top: var(--margin-xl);
+}
+
+.filtering-section__catagory {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--padding-small) var(--padding-medium);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filtering-section__catagory:hover {
+    background-color: var(--third-color);
+}
+
+.main-content__title{
+    text-align: center;
+}
+/* Product Section */
+.product-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--margin-large);
+    padding: var(--padding-large);
+}
+
+.product-card {
+    background-color: var(--background-color);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    padding: var(--padding-medium);
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    box-shadow: var(--box-shadow-hover);
+}
+
+.product-card__image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+}
+
+.product-card__name {
+    font-size: var(--font-size-medium);
+    color: var(--text-color);
+    margin: var(--margin-small) 0;
+}
+
+.product-card__price {
+    font-size: var(--font-size-medium);
+    color: var(--tertiary-color);
+    margin-bottom: var(--margin-medium);
+}
+
+.product-card__button {
+    background-color: var(--primary-color);
+    color: black;
+    padding: var(--padding-small) var(--padding-medium);
+    border: 1px solid var(--third-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-card__button:hover {
+    background-color: var(--tertiary-color);
+}

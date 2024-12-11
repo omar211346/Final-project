@@ -13,7 +13,7 @@
 
 :root {
     /* color */
-    --primary-color: blue;
+    --primary-color: lightblue;
     --secundary-color:lightgrey;
     --third-color:orange;
     --background-color: white;
@@ -37,6 +37,10 @@
     --border-radius-small: 0.5rem;
     --border-radius-base:1rem;
     --border-radius-large: 1.5rem;
+
+    /* border-shadow */
+    --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    --box-shadow-hover: 0px 8px 16px rgba(0, 0, 0, 0.2);
 
     /* font size  */
     --font-size-small: 1rem;

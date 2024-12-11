@@ -8,7 +8,7 @@ const productsList = [
     {id:7, name: "white t-shirt", price: 200, category: "t-shirt", stockAvailability: 7 },
     {id: 8, name: "2-pack t-shirs", price: 300, category: "t-shirt", stockAvailability: 12 },
     {id: 9, name: "fitness t-shirt", price: 99, category: "t-shirt", stockAvailability: 6},
-    {id: 10, name: "black hoodie", price: 500, category: "t-shirt", stockAvailability: 12},
+    {id: 10, name: "black hoodie", price: 500, category: "sweater", stockAvailability: 12},
     {id: 11, name: "white hoodie", price: 550, category: "sweater", stockAvailability: 6},
     {id:12, name: "cargo sweater", price: 440, category: "sweater", stockAvailability: 4},
     {id:13, name: "white oversized sweater", price: 600, category:"sweater", stockAvailability: 5},
