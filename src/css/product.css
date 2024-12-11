@@ -1,10 +1,9 @@
 
 .main{
-    padding-top: var(--padding-large); /* Adjust according to the header height */
+    padding-top: var(--padding-large); 
     width: 100%;
 }
 
-/* Filter Section */
 .filtering-section {
     margin-top: var(--margin-xl);
     background-color: var(--secondary-color);
