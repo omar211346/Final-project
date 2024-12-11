@@ -3,9 +3,9 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Ensure content starts from the top */
+    justify-content: flex-start; 
     padding: var(--padding-large);
-    margin-top: var(--margin-large); /* Add space below the header */
+    margin-top: var(--margin-large);
 }
 
 /* Homepage Title */
@@ -15,7 +15,7 @@ main {
     color: var(--text-color);
     text-align: center;
     margin-bottom: var(--margin-medium);
-    margin-top: var(--margin-medium); /* Extra space to ensure it clears the header */
+    margin-top: var(--margin-medium); /
 }
 
 /* Homepage Description */
@@ -40,10 +40,10 @@ main {
     text-align: center;
     padding: var(--padding-small);
     border-radius: var(--border-radius-base);
-    box-shadow: 0px 4px 6px var(--text-color); /* Box shadow for image containers */
+    box-shadow: 0px 4px 6px var(--text-color); 
     background-color: var(--primary-color);
-    width: 400px; /* Fixed width */
-    height: 650px; /* Fixed height */
+    width: 400px;
+    height: 650px; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -53,9 +53,9 @@ main {
 /* Image Styling */
 .homepage-model-section__male__image,
 .homepage-model-section__female__image {
-    width: 100%; /* Stretch image to container's width */
-    height: 500px; /* Fixed height for consistent layout */
-    object-fit: cover; /* Ensures the image fits nicely */
+    width: 100%; 
+    height: 500px; 
+    object-fit: cover; 
     border-radius: var(--border-radius-base);
 }
 

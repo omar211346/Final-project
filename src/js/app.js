@@ -139,7 +139,7 @@ function updateCartCount() {
     const totalItems = storedCart.reduce((sum, item) => sum + item.quantity, 0);
 
     if (cartCountElement) {
-        cartCountElement.textContent = totalItems; // Update the cart count
+        cartCountElement.textContent = totalItems; 
     }
 }
 
@@ -150,13 +150,13 @@ function renderCartItems() {
 
     if (!cartTableBody || !totalPriceElement) {
         console.warn("Cart table or total price element not found. Skipping cart rendering.");
-        return; // Exit if not on the checkout page
+        return; 
     }
 
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    console.log("Stored Cart:", storedCart); // Debugging: Log the cart data
+    console.log("Stored Cart:", storedCart); 
 
-    cartTableBody.innerHTML = ""; // Clear the table
+    cartTableBody.innerHTML = ""; 
     let totalPrice = 0;
 
     if (storedCart.length === 0) {
@@ -187,22 +187,22 @@ function renderCartItems() {
 
         cartTableBody.appendChild(row);
 
-        totalPrice += item.price * item.quantity; // Update total price
+        totalPrice += item.price * item.quantity; 
     });
 
-    totalPriceElement.textContent = `${totalPrice} NOK`; // Display total price
+    totalPriceElement.textContent = `${totalPrice} NOK`; 
 }
 
 // Complete order functionality
 function completeOrder(name, address,) {
-    localStorage.removeItem("cart"); // Clear cart
+    localStorage.removeItem("cart"); 
     alert(`Thank you for your order, ${name}!\nYour products will be sent to:\n${address}`);
-    window.location.href = "../src/index.html"; // Redirect to home
+    window.location.href = "../src/index.html"; 
 }
 
 // Form validation
 function validateForm(event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault(); 
     const name = document.getElementById("first-name").value.trim();
     const address = document.getElementById("address").value.trim();
     const email = document.getElementById("email").value.trim();
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isCartPage = document.querySelector(".cart-section") !== null;
 
     if (isProductPage) {
-        showProducts(productsList); // Render products
+        showProducts(productsList); 
     }
 
     if (isCartPage) {
@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    updateCartCount(); // Update cart count on every page
+    updateCartCount(); 
 });
 
 // adding so when user tap the shop now button on the homepage it redirects them to the product page
