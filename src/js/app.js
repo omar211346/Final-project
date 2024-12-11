@@ -76,8 +76,13 @@ const categoryButtons = document.querySelectorAll(".filtering-section__catagory"
 categoryButtons.forEach( button => {
         button.addEventListener( "click", () => {
             const category = button.id;
-            const filteredProducts = productsList.filter( product => product.category === category);
-            showProducts(filteredProducts)
+            if(category === "all"){
+                showProducts(productsList);
+            } 
+            else{
+                const filteredProducts = productsList.filter( product => product.category === category);
+                showProducts(filteredProducts)
+            }
         });
 });
 
