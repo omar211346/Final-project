@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "lato";
+    src: url(../assets/font/Lato-Black.ttf);
+}
+@font-face {
+    font-family: "lato";
+    src: url(../assets/font/Lato-Bold.ttf);
+}
+@font-face {
+    font-family: "lato";
+    src: url(../assets/font/Lato-BlackItalic.ttf);
+}
+
+:root {
+    /* color */
+    --primary-color: blue;
+    --secundary-color:lightgrey;
+    --third-color:orange;
+    --background-color: white;
+    --text-color: black;
+
+    /* padding */
+    --padding-small: 0.5rem;
+    --padding-base:1rem;
+    --padding-medium:1.5rem;
+    --padding-large: 2rem;
+    --padding-xl:2.5rem;
+
+    /* margin */
+    --margin-small: 0.5rem;
+    --margin-base:1rem;
+    --margin-medium:1.5rem;
+    --margin-large: 2rem;
+    --margin-xl:2.5rem;
+
+    /* border-radius */
+    --border-radius-small: 0.5rem;
+    --border-radius-base:1rem;
+    --border-radius-large: 1.5rem;
+
+    /* font size  */
+    --font-size-small: 1rem;
+    --font-size-medium: 1.25rem;
+    --font-size-large: 1.5rem;
+    --font-size-xl: 1.75rem;
+
+
+    /* font wheight */
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+    --font-weight-normal: 900;
+
+}

@@ -42,7 +42,7 @@ function showProducts(products) {
 
         // Images part
         const productImage = document.createElement("img");
-        productImage.src = `../src/img/product${product.id}.webp`;
+        productImage.src = `../src/assets/img/product${product.id}.webp`;
         productImage.alt = product.name;
         productImage.classList.add("product-card__image");
 
