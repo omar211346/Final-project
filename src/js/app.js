@@ -92,7 +92,25 @@ function createItem(stockAvailability) {
 
     return stockCount;
 }
+showProducts(productsList);
 
+
+
+
+
+const categoryButtons = document.querySelectorAll(".filtering-section__catagory");
+
+categoryButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const category = button.id;
+        if (category === "all") {
+            showProducts(productsList);
+        } else {
+            const filteredProducts = productsList.filter(product => product.category === category);
+            showProducts(filteredProducts);
+        }
+    });
+});
 // Add product to cart
 function addToCart(productId, productName, productPrice) {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -176,7 +194,7 @@ function renderCartItems() {
 }
 
 // Complete order functionality
-function completeOrder(name, address, email) {
+function completeOrder(name, address,) {
     localStorage.removeItem("cart"); // Clear cart
     alert(`Thank you for your order, ${name}!\nYour products will be sent to:\n${address}`);
     window.location.href = "../src/index.html"; // Redirect to home
@@ -188,13 +206,15 @@ function validateForm(event) {
     const name = document.getElementById("first-name").value.trim();
     const address = document.getElementById("address").value.trim();
     const email = document.getElementById("email").value.trim();
+    const phoneNumber = document.getElementById("phonenumber").value.trim();
 
-    if (!name || !address || !email) {
+
+    if (!name || !address || !email || !phoneNumber) {
         alert("Please fill in all required fields.");
         return;
     }
 
-    completeOrder(name, address, email);
+    completeOrder(name, address, email, phoneNumber);
 }
 
 // Initialize page logic
@@ -207,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (isCartPage) {
-        renderCartItems(); // Render cart items
+        renderCartItems(); 
         const orderForm = document.querySelector(".checkout-section__form");
         if (orderForm) {
             orderForm.addEventListener("submit", validateForm);
@@ -215,4 +235,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateCartCount(); // Update cart count on every page
+});
+
+// adding so when user tap the shop now button on the homepage it redirects them to the product page
+document.addEventListener("DOMContentLoaded", () => {
+    const maleShopButton = document.querySelector(".homepage-model-section__male__button");
+    const femaleShopButton = document.querySelector(".homepage-model-section__female__button");
+
+    // Redirect to product page on button click
+    maleShopButton.addEventListener("click", () => {
+        window.location.href = "../src/product.html";
+    });
+
+    femaleShopButton.addEventListener("click", () => {
+        window.location.href = "../src/product.html";
+    });
 });
