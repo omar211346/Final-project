@@ -26,189 +26,193 @@ const productsList = [
     {id: 25, name: " black dress pant", price: 1000, category: "pants", stockAvailability: 6},
 ]
 
-function showProducts ( products) {
+// Show products dynamically
+function showProducts(products) {
     const productSection = document.querySelector(".product-section");
-    productSection.innerHTML="";
+    if (!productSection) {
+        console.warn("Product section not found. Skipping product rendering.");
+        return; // Exit if not on the product page
+    }
 
-    // creating so that javascript dynamically enters the photos and its information in html
+    productSection.innerHTML = ""; // Clear the section
+
     products.forEach(product => {
         const productCard = document.createElement("div");
         productCard.classList.add("product-card");
 
-            // images part
-            const productImage = document.createElement("img");
-            productImage.src = `../src/img/product${product.id}.webp`;
-            productImage.alt = product.name;
-            productImage.classList.add("product-card__image");
+        // Images part
+        const productImage = document.createElement("img");
+        productImage.src = `../src/img/product${product.id}.webp`;
+        productImage.alt = product.name;
+        productImage.classList.add("product-card__image");
 
-            // naming part
+        // Naming part
+        const productName = document.createElement("h3");
+        productName.textContent = product.name;
+        productName.classList.add("product-card__name");
 
-            const productName = document.createElement("h3");
-            productName.textContent = product.name;
-            productName.classList.add ("product-card__name");
+        // Pricing part
+        const productPrice = document.createElement("p");
+        productPrice.textContent = `Price: ${product.price} NOK`;
+        productPrice.classList.add("product-card__price");
 
-            // pricing part
+        // Add to Cart Button
+        const addToCartButton = document.createElement("button");
+        addToCartButton.textContent = "Add to Cart";
+        addToCartButton.classList.add("product-card__button");
+        addToCartButton.addEventListener("click", () => {
+            addToCart(product.id, product.name, product.price); // Add product to cart
+        });
 
-            const productPrice = document.createElement("p");
-            productPrice.textContent= product.price;
-            productPrice.classList.add ("product-card__price");
-
-
-             // from the Stock Badge
+        // Stock Badge
         const stockBadge = createItem(product.stockAvailability);
-            productCard.appendChild(stockBadge);
+        productCard.appendChild(stockBadge);
 
-            // Add to Cart Button (from `createAddToCartButton`)
-        const addToCartButton = createAddToCartButton(product, products);
+        // Append elements
+        productCard.appendChild(productImage);
+        productCard.appendChild(productName);
+        productCard.appendChild(productPrice);
         productCard.appendChild(addToCartButton);
 
-
-            productCard.appendChild(productImage);
-            productCard.appendChild(productName);
-            productCard.appendChild(productPrice);
-            productCard.appendChild(addToCartButton);
-
-            productSection.appendChild(productCard);
+        productSection.appendChild(productCard);
     });
-
 }
 
-showProducts (productsList);
+// Stock Badge
+function createItem(stockAvailability) {
+    const stockCount = document.createElement("span");
 
-// getting the category section so we can start the logic for user filtering 
-const categoryButtons = document.querySelectorAll(".filtering-section__catagory");
-
-categoryButtons.forEach( button => {
-        button.addEventListener( "click", () => {
-            const category = button.id;
-            if(category === "all"){
-                showProducts(productsList);
-            } 
-            else{
-                const filteredProducts = productsList.filter( product => product.category === category);
-                showProducts(filteredProducts)
-            }
-        });
-});
-
-
-// since we could not use the modular, I have opted to use another compoenent I wanted, but more logic. introducint stockAvailability
-
-function createItem( stockAvailability) {
-    const stockCount = document.createElement("span")
-
-    if(stockAvailability>0){
-        stockCount.textContent = "in stock of:" + stockAvailability + "items ";
-        stockCount.classList.add ("product-card__stock");
+    if (stockAvailability > 0) {
+        stockCount.textContent = `In stock: ${stockAvailability} items`;
+        stockCount.classList.add("product-card__stock");
+    } else {
+        stockCount.textContent = "Sorry, this product is sold out";
+        stockCount.classList.add("product-card__stock", "out-of-stock");
     }
-    else{
-        stockAvailability.textContent = "sorry this product is sould out";
-        stockAvailability.classList.add ("product-card__stock", "out-of-stock");
-    }
+
     return stockCount;
 }
 
-// creating the array for cart so that we can create the function
+// Add product to cart
+function addToCart(productId, productName, productPrice) {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingItem = storedCart.find(item => item.id === productId);
 
-
-let cart = [];
-
-// Load existing cart from localStorage
-document.addEventListener("DOMContentLoaded", () => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-        cart = JSON.parse(storedCart);
+    if (existingItem) {
+        existingItem.quantity += 1; // Increment quantity if item already exists
+    } else {
+        storedCart.push({
+            id: productId,
+            name: productName,
+            price: productPrice,
+            quantity: 1 // Add a new product with quantity 1
+        });
     }
-});
 
-// Add to Cart Logic
-function addToCart(product) {
-    cart = [...cart, product]; // Add the product to the cart
-    localStorage.setItem("cart", JSON.stringify(cart)); // Save updated cart to localStorage
-    updateCartCount(); // Update cart count in the header
+    localStorage.setItem("cart", JSON.stringify(storedCart)); // Save the updated cart
+    updateCartCount(); // Update the cart count in the header
+    alert(`${productName} has been added to the cart!`);
 }
 
-// Update Cart Count in Header
+// Update cart count in header
 function updateCartCount() {
     const cartCountElement = document.getElementById("cart-count");
-    cartCountElement.textContent = cart.length; // Display the total number of items in the cart
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalItems = storedCart.reduce((sum, item) => sum + item.quantity, 0);
+
+    if (cartCountElement) {
+        cartCountElement.textContent = totalItems; // Update the cart count
+    }
 }
 
-// Add "Add to Cart" Button Logic to Products
-function createAddToCartButton(product, products) {
-    const addToCartButton = document.createElement("button");
-    addToCartButton.textContent = "Add to Cart";
-    addToCartButton.classList.add("product-card__button");
-
-    if (product.stockAvailability > 0) {
-        addToCartButton.disabled = false;
-        addToCartButton.addEventListener("click", () => {
-            product.stockAvailability -= 1; // Reduce stock by 1
-            addToCart(product); // Add product to cart
-            showProducts(products); // Refresh the product list
-        });
-    } else {
-        addToCartButton.disabled = true;
-    }
-
-    return addToCartButton;
-}
-
-
-document.addEventListener( "DOMContentLoaded", () => {
-    const storedCart = localStorage.getItem("cart");
-    let cart = [];
-    if (storedCart) {
-        cart = JSON.parse(storedCart);
-    } else {
-        cart = [];
-    }
-
+// Render cart items on the cart page
+function renderCartItems() {
     const cartTableBody = document.querySelector(".cart-section__table tbody");
     const totalPriceElement = document.getElementById("cart-total");
 
+    if (!cartTableBody || !totalPriceElement) {
+        console.warn("Cart table or total price element not found. Skipping cart rendering.");
+        return; // Exit if not on the checkout page
+    }
+
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    console.log("Stored Cart:", storedCart); // Debugging: Log the cart data
+
+    cartTableBody.innerHTML = ""; // Clear the table
     let totalPrice = 0;
 
-    cart.forEach(product => {
-        // table row
+    if (storedCart.length === 0) {
+        cartTableBody.innerHTML = "<tr><td colspan='4'>Your cart is empty.</td></tr>";
+        totalPriceElement.textContent = "0 NOK";
+        return;
+    }
+
+    storedCart.forEach(item => {
         const row = document.createElement("tr");
 
-        //  name cell
         const nameCell = document.createElement("td");
-        nameCell.textContent = product.name;
+        nameCell.textContent = item.name;
 
-        // Create quantity cell (default to 1 for simplicity, can be expanded later)
         const quantityCell = document.createElement("td");
-        quantityCell.textContent = 1;
+        quantityCell.textContent = item.quantity;
 
-        // price
         const priceCell = document.createElement("td");
-        priceCell.textContent = "$" + product.price;
+        priceCell.textContent = `${item.price} NOK`;
 
-        // Create total price
         const totalCell = document.createElement("td");
-        totalCell.textContent = "$" + product.price;
+        totalCell.textContent = `${item.price * item.quantity} NOK`;
 
-        // Append all to function
         row.appendChild(nameCell);
         row.appendChild(quantityCell);
         row.appendChild(priceCell);
         row.appendChild(totalCell);
 
-        // Append row to table body
         cartTableBody.appendChild(row);
 
-        // Update total price
-        totalPrice += product.price;
+        totalPrice += item.price * item.quantity; // Update total price
     });
 
-    // Displaying total price
-    totalPriceElement.textContent = "$" + totalPrice;
+    totalPriceElement.textContent = `${totalPrice} NOK`; // Display total price
+}
+
+// Complete order functionality
+function completeOrder(name, address, email) {
+    localStorage.removeItem("cart"); // Clear cart
+    alert(`Thank you for your order, ${name}!\nYour products will be sent to:\n${address}`);
+    window.location.href = "../src/index.html"; // Redirect to home
+}
+
+// Form validation
+function validateForm(event) {
+    event.preventDefault(); // Prevent form submission
+    const name = document.getElementById("first-name").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    if (!name || !address || !email) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
+    completeOrder(name, address, email);
+}
+
+// Initialize page logic
+document.addEventListener("DOMContentLoaded", () => {
+    const isProductPage = document.querySelector(".product-section") !== null;
+    const isCartPage = document.querySelector(".cart-section") !== null;
+
+    if (isProductPage) {
+        showProducts(productsList); // Render products
+    }
+
+    if (isCartPage) {
+        renderCartItems(); // Render cart items
+        const orderForm = document.querySelector(".checkout-section__form");
+        if (orderForm) {
+            orderForm.addEventListener("submit", validateForm);
+        }
+    }
+
+    updateCartCount(); // Update cart count on every page
 });
-
-
-
-
-
-
-
