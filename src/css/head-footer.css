@@ -46,19 +46,19 @@ header {
     color: var(--primary-color);
     text-align: center;
     color: var(--text-color);
-    box-shadow: 4px 4px 8px var(--text-color); /* Slightly deeper shadow */
+    box-shadow: 4px 4px 8px var(--text-color); 
 }
 /* Footer Styles */
 footer {
     flex-grow: 1;
-    position: relative; /* Anchors the footer */
-    width: 100%; /* Ensures it spans the full width */
+    position: relative; 
+    width: 100%; 
     padding: var(--padding-large);
     background-color: var(--primary-color);
     color: var(--text-color);
     text-align: center;
     border-top: 2px solid var(--secondary-color);
-    box-shadow: 0px -2px 4px var(--text-color); /* Subtle shadow at the top */
+    box-shadow: 0px -2px 4px var(--text-color); 
 }
 
 .footer-description {

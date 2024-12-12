@@ -14,9 +14,9 @@
     .filtering-section{
         flex-direction: column; 
         gap: var(--margin-small); 
-        font-size: var(--font-size-small); 
-        padding: var(--padding-small);
+       
     }
+    
     /* Footer */
     footer {
         padding: var(--padding-medium); 
